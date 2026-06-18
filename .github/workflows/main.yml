@@ -14,20 +14,18 @@ jobs:
         run: |
           cat hello.json | jq 'filter(.username == "John")'
 
-      - name: Alert KeepHQ on Pipeline Failure
+      - name: Alert Keep on Pipeline Failure
         if: failure()
         run: |
           curl -X POST "http://10.126.31.171:8181/alerts/event" \
-          -H "Content-Type: application/json" \
-          -H "X-API-KEY: local" \
-          -d '[
-          {
-            "name": "GitHub Pipeline ID: ${{ github.run_id }}",
-            "source": "github-actions",
-            "description": "The GitHub Actions pipeline has failed. Please investigate the issue.",
-            "repository": "${{ github.repository }}",
-            "run_id": "${{ github.run_id }}",
-            "severity": "critical",
-            "status": "firing"
-          }
-          ]'
+            -H "Content-Type: application/json" \
+            -H "X-API-KEY: local" \
+            -d '[
+              {
+                "id": "github-${{ github.run_id }}",
+                "name": "GitHub Pipeline Failed",
+                "severity": "critical",
+                "status": "firing",
+                "description": "Repository ${{ github.repository }} workflow run ${{ github.run_id }} failed"
+              }
+            ]'
