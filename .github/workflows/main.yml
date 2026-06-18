@@ -23,6 +23,7 @@ jobs:
           -d '{
             "name": "GitHub Pipeline ID: ${{ github.run_id }}",
             "source": "github-actions",
+            "description": "The GitHub Actions pipeline has failed. Please investigate the issue.",
             "repository": "${{ github.repository }}",
             "run_id": "${{ github.run_id }}",
             "severity": "critical",
