@@ -20,7 +20,8 @@ jobs:
           curl -X POST "http://10.126.31.171:8181/alerts/event" \
           -H "Content-Type: application/json" \
           -H "X-API-KEY: local" \
-          -d '{
+          -d '[
+          {
             "name": "GitHub Pipeline ID: ${{ github.run_id }}",
             "source": "github-actions",
             "description": "The GitHub Actions pipeline has failed. Please investigate the issue.",
@@ -28,5 +29,5 @@ jobs:
             "run_id": "${{ github.run_id }}",
             "severity": "critical",
             "status": "firing"
-          }'
- 
+          }
+          ]'
