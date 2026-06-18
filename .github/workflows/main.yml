@@ -17,7 +17,7 @@ jobs:
       - name: Alert KeepHQ on Pipeline Failure
         if: failure()
         run: |
-          curl -X POST "http://10.126.31.171:3001/alerts/event" \
+          curl -X POST "http://10.126.31.171:8181/alerts/event" \
           -H "Content-Type: application/json" \
           -d '{
             "name": "GitHub Pipeline Failed",
