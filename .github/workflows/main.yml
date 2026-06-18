@@ -25,6 +25,7 @@ jobs:
             "source": "github-actions",
             "repository": "${{ github.repository }}",
             "run_id": "${{ github.run_id }}",
-            "severity": "critical"
+            "severity": "critical",
+            "status": "firing"
           }'
  
