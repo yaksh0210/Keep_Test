@@ -23,10 +23,13 @@ jobs:
             -d '[
               {
                 "id": "github-${{ github.run_id }}",
+                "source": ["GitHub Actions"],
                 "name": "GitHub Pipeline Failed",
                 "severity": "critical",
-                "repository": "${{ github.repository }}",
-                "run_id": "${{ github.run_id }}",
+                "labels": {
+                  "repository": "${{ github.repository }}",
+                  "run_id": "${{ github.run_id }}"
+                },
                 "status": "firing",
                 "description": "Repository ${{ github.repository }} workflow run ${{ github.run_id }} failed"
               }
