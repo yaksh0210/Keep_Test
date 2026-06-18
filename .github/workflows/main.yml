@@ -24,7 +24,7 @@ jobs:
               {
                 "id": "github-${{ github.run_id }}",
                 "source": ["GitHub Actions"],
-                "name": "GitHub Pipeline Failed",
+                "name": "GitHub Pipeline Failed-${{ github.run_id }}",
                 "severity": "critical",
                 "labels": {
                   "repository": "${{ github.repository }}",
