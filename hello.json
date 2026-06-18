@@ -1,0 +1,6 @@
+{
+  "user": "Alice",
+  "age": 28,
+  "skills": ["Linux", "Python", "Docker"],
+  "meta": { "active": true }
+}

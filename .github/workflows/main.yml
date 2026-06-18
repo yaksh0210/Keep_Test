@@ -1,0 +1,29 @@
+name: Production CI/CD Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: [self-hosted, keep]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Jq command to generate a failure scenario
+        run: |
+          cat hello.json | jq 'filter(.username == "John")'
+
+      - name: Alert KeepHQ on Pipeline Failure
+        if: failure()
+        run: |
+          curl -X POST "http://10.126.31.171:3001/alerts" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "name": "GitHub Pipeline Failed",
+            "source": "github-actions",
+            "repository": "${{ github.repository }}",
+            "run_id": "${{ github.run_id }}",
+            "severity": "critical"
+          }'
+ 
