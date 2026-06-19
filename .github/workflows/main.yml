@@ -14,6 +14,12 @@ jobs:
         run: |
           cat hello.json | jq 'filter(.username == "John")'
 
+
+
+  failed:
+      runs-on: [self-hosted, Linux]
+      needs: build_and_deploy
+      steps:
       - name: Alert Keep on Pipeline Failure
         if: failure()
         run: |
