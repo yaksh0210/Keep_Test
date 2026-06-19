@@ -12,7 +12,6 @@ jobs:
 
       - name: Run Jq command to generate a failure scenario
         run: |
-          sleep 4
           echo"{"username": "John", "action": "login"}" > hello.json 
           cat hello.json | jq 'filter(.username == "John")'
           
@@ -21,6 +20,7 @@ jobs:
       - name: Alert Keep on Pipeline Failure
         if: failure()
         run: |
+          sleep 5
           curl -X POST "http://10.126.31.171:8181/alerts/event" \
             -H "Content-Type: application/json" \
             -H "X-API-KEY: local" \
