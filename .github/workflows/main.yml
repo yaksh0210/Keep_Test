@@ -12,8 +12,10 @@ jobs:
 
       - name: Run Jq command to generate a failure scenario
         run: |
+          sleep 4
           echo"{"username": "John", "action": "login"}" > hello.json 
           cat hello.json | jq 'filter(.username == "John")'
+          
 
 
       - name: Alert Keep on Pipeline Failure
