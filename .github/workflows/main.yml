@@ -20,7 +20,6 @@ jobs:
       - name: Alert Keep on Pipeline Failure
         if: failure()
         run: |
-          sleep 5
           curl -X POST "http://10.126.31.171:8181/alerts/event" \
             -H "Content-Type: application/json" \
             -H "X-API-KEY: local" \
