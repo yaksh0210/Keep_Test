@@ -5,7 +5,7 @@ on:
 
 jobs:
   build_and_deploy:
-    runs-on: [self-hosted, Linux]
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
